@@ -21,12 +21,10 @@ const EpisodioCard: React.FC<EpisodioCardProp> = ({
     esFavorito
 }) => {
     const [personajes, setPersonajes] = useState<Personaje[]>([]);
-    const [loadingPersonajes, setLoadingPersonajes] = useState(true);
 
     useEffect(() => {
         const fetchPersonajes = async () => {
             if(!episodio.characters || episodio.characters.length === 0) {
-                setLoadingPersonajes(false);
                 return;
             }
 
@@ -38,7 +36,6 @@ const EpisodioCard: React.FC<EpisodioCardProp> = ({
 
             const personajesData = await Promise.all(personajesPromises);
             setPersonajes(personajesData);
-            setLoadingPersonajes(false);
             
         };
         fetchPersonajes();
