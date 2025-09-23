@@ -1,0 +1,1 @@
+export { useFavoritos, type Episodio } from "@/contexts/FavoritosContext";
