@@ -23,7 +23,7 @@ const ListaFavoritos: React.FC = () => {
                 </p>
             ) : (
                 <div>
-                    {favoritos.map((episodio) => (
+                    {favoritos.map((episodio: Episodio) => (
                         <div key={episodio.id}>
                             <EpisodioCard
                                 episodio={episodio}

@@ -38,6 +38,7 @@ const EpisodioCard: React.FC<EpisodioCardProp> = ({
 
             const personajesData = await Promise.all(personajesPromises);
             setPersonajes(personajesData);
+            setLoadingPersonajes(false);
             
         };
         fetchPersonajes();

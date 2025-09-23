@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useFavoritos } from "@/hooks/favoritos";
 import type { Episodio } from "@/hooks/favoritos";
@@ -8,13 +7,11 @@ import EpisodioCard from "@/components/EpisodioCard";
 import ListaFavoritos from "@/components/ListaFavoritos";
 import CrearEpisodio from "@/components/CrearEpisodio";
 import { toast } from "sonner";
-import { set } from "zod";
 
 export default function Home() {
 
     const [episodiosAPI, setEpisodiosAPI] = useState<Episodio[]>([]);
     const { agregarFavorito, eliminarFavorito, esFavorito } = useFavoritos();
-    const [loading, setLoading] = useState(true);
     const [episodiosCreados, setEpisodiosCreados] = useState<Episodio[]>([]);
 
     const todosEpisodios = [...episodiosCreados, ...episodiosAPI];
@@ -33,10 +30,9 @@ export default function Home() {
                 }
 
                 setEpisodiosAPI(todosEpisodios);
-                setLoading(false);
+                
             } catch {
                 toast.error("Error al cargar los episodios");
-                setLoading(false);
             }
         };
         fetchEpisodios();

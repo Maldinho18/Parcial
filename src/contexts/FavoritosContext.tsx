@@ -1,7 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "sonner";
-import { set } from "zod";
 
 export interface Episodio {
     id: number;
@@ -69,5 +68,8 @@ export const FavoritosProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
 export const useFavoritos = () => {
     const context = useContext(FavoritosContext);
+    if (!context) {
+        throw new Error('Error');
+    }
     return context;
 }
