@@ -12,7 +12,7 @@ const CrearEpisodios: React.FC<CrearEpisodioProps> = ({ onAgregarEpisodio }) => 
     const [titulo, setTitulo] = useState("");
     const [personajes, setPersonajes] = useState("");
 
-    const personajesRegex = /^\d+-\d+-\d+-\d+-\d+$/;
+    
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
