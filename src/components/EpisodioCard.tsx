@@ -42,51 +42,44 @@ const EpisodioCard: React.FC<EpisodioCardProp> = ({
     }, [episodio.characters]);
 
     return (
-        <div>
-            <div>
-                <div>
-                    <h3>{episodio.name}</h3>
-                </div>
-                <div>
-                    <p>Fecha Episodio</p>
-                    <p>{episodio.air_date}</p>
-                </div>
+        <div className="border rounded-lg bg-white shadow-sm overflow-hidden text-sm">
+            <div className="flex items-center justify-between bg-gray-100 border-b px-3 py-2">
+                <h3 className="font-semibold truncate pr-3 text-xs sm:text-sm">{episodio.name}</h3>
+                <span className="text-[11px] text-gray-600">
+                    Fecha: {episodio.air_date}
+                </span>
             </div>
-            <div>
+            <div className="flex flex-wrap gap-5">
                 {personajes.map((personaje) => (
-                    <div key={personaje.id}>
+                    <div key={personaje.id} className="flex flex-col items-center w-16">
                         <div>
                             <Image
                                 src={personaje.image}
                                 alt={personaje.name}
                                 width={50}
                                 height={50}
-                                className="rounded-full"
+                                className="w-12 h-12 rounded-full object-cover ring-1 ring-gray-300"
                             />
+                            <span className="mt-1 text-[10px] text-center leading-tight line-clamp-2">
+                                {personaje.name}
+                            </span>
                         </div>
                     </div>
                 ))}
             </div>
-            <div>
-                {personajes.map((personaje) => (
-                    <div key={`name-${personaje.id}`}>
-                        <p>{personaje.name}</p>
-                    </div>
-                ))}
+            <div className="mt-4 flex items-center justify-between">
+                <span className="text-[11px] font-medium text-gray-600">
+                    Fecha: {episodio.air_date}
+                </span>
+                <button
+                    onClick={() => onToggleFavorito(episodio)}
+                    className={`px-4 py-2 rounded ${
+                        esFavorito ? 'bg-red-500 text-white' : 'bg-blue-500 text-white'
+                    }`}
+                >
+                    {esFavorito ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'}
+                </button>
             </div>
-            <div>
-                <p>
-                    <strong>Episodio:</strong> {episodio.episode}
-                </p>
-            </div>
-            <button
-                onClick={() => onToggleFavorito(episodio)}
-                className={`px-4 py-2 rounded ${
-                    esFavorito ? 'bg-red-500 text-white' : 'bg-blue-500 text-white'
-                }`}
-            >
-                {esFavorito ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'}
-            </button>
         </div>
     );
 };
